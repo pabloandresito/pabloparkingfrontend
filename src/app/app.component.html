@@ -15,22 +15,22 @@
       <div class="card-body">
         <label class="strong">Ingresar un Nuevo Vehículo</label>
         <div class="input-group mb-3">
-        <input type="text" class="form-control" maxlength="50" name="registroParqueoDto.placa" placeholder="Placa"
-          aria-label="Placa" aria-describedby="button-addon2" required ngModel>
+        <input type="text" class="form-control" maxlength="50" name="placa" placeholder="Placa"
+          aria-label="Placa" aria-describedby="button-addon2" required [(ngModel)]="registroParqueoDto.placa">
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" maxlength="50" name="registroParqueoDto.cilindraje"
-            placeholder="Cilindraje" aria-label="Cilindraje" aria-describedby="button-addon2" required ngModel>
+          <input type="text" class="form-control" maxlength="50" name="cilindraje"
+            placeholder="Cilindraje" aria-label="Cilindraje" aria-describedby="button-addon2" required [(ngModel)]="registroParqueoDto.cilindraje">
         </div>
         <div class="input-group mb-3">
           <div class="form-check form-check-inline">
-            <input class="form-check-input" name="registroParqueoDto.tipoVehiculo" type="radio"
-              id="carro" value="1" ngModel>
+            <input class="form-check-input" name="tipoVehiculo" type="radio"
+              id="carro" value="1" checked=true [(ngModel)]="registroParqueoDto.tipoVehiculo">
             <label class="form-check-label" for="carro">Carro</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" name="registroParqueoDto.tipoVehiculo" type="radio"
-              id="moto" value="2" ngModel>
+            <input class="form-check-input" name="tipoVehiculo" type="radio"
+              id="moto" value="2" [(ngModel)]="registroParqueoDto.tipoVehiculo">
             <label class="form-check-label" for="moto">Moto</label>
           </div>
         </div>
