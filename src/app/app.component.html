@@ -48,6 +48,39 @@
 
   </div>
 
+  <div class="row margin-top-30">
+  
+    <label class="strong">Lista de Vehículos Ingresados</label>
+  
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col" hidden="true">Id</th>
+          <th scope="col">Placa</th>
+          <th scope="col">Tipo de Vehículo</th>
+          <th scope="col">Cilindraje</th>
+          <th scope="col">Fecha de Ingreso</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vehiculo of listVehiculosIngresados">
+          <td hidden="true">{{vehiculo.id}}</td>
+          <th scope="row">{{vehiculo.placa}}</th>
+          <td>{{ vehiculo.tipoVehiculo == 1 ? "Carro" : "Moto" }}</td>
+          <td>{{vehiculo.cilindraje}}</td>
+          <td>{{vehiculo.fechaHoraIngreso}}</td>
+          <td>
+            <div class="input-group mb-3">
+              <button (click)="retirar(vehiculo)" class="btn btn-sm btn-info">Retirar</button>
+            </div>
+          </td>
+        </tr>
+  
+      </tbody>
+    </table>
+  </div>
+
 </div>
 
 <router-outlet></router-outlet>

@@ -11,7 +11,11 @@ export class AppComponent {
   textError = "";
   textRetirar = "";
 
-  constructor(private httpClient: HttpClient) {};
+  listVehiculosIngresados = null;
+
+  constructor(private httpClient: HttpClient) {
+    this.refrescarListaVehiculos();
+  };
   headers = new HttpHeaders()
             .set("Content-Type", "application/json");
             //.set("Access-Control-Allow-Origin", "*");
@@ -22,13 +26,26 @@ export class AppComponent {
                       };
 
   ingresar() {
-    return this.httpClient.post('http://localhost:8080/registro-parqueo/ingresar', this.registroParqueoDto, {headers:this.headers} )
+    this.httpClient.post('http://localhost:8080/registro-parqueo/ingresar', this.registroParqueoDto, {headers:this.headers} )
       .subscribe(
         response => {
-          return response as string;
+          this.textRetirar =  response.message;
+        },
+        error => {
+          this.textError =  error.message;
         }
       );
-      
-    //return this.httpClient.get('localhost:8080/registro-parqueo/list-vehiculos');
+  };
+
+  refrescarListaVehiculos() {
+    this.httpClient.get('http://localhost:8080/registro-parqueo/list-vehiculos')
+      .subscribe(
+        response => {
+          this.listVehiculosIngresados = response;
+        },
+        error => {
+          this.textError = error as string;
+        }
+      ); 
   };
 }
