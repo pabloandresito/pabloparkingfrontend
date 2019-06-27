@@ -29,10 +29,10 @@ export class AppComponent {
     this.httpClient.post('http://localhost:8080/registro-parqueo/ingresar', this.registroParqueoDto, {headers:this.headers} )
       .subscribe(
         response => {
-          this.textRetirar =  response.message;
+          this.success(response);
         },
         error => {
-          this.textError =  error.message;
+          this.error(error);
         }
       );
   };
@@ -44,8 +44,27 @@ export class AppComponent {
           this.listVehiculosIngresados = response;
         },
         error => {
-          this.textError = error as string;
+          this.error(error);
         }
       ); 
+  };
+
+  success(res) {
+    this.refrescarListaVehiculos();
+    this.limpiarFormulario();
+    this.textRetirar = res.message;
+  };
+
+  error(res) {
+    this.textRetirar = "";
+    this.textError = res.error;
+  };
+
+  limpiarFormulario() {
+    this.registroParqueoDto.placa = "";
+    this.registroParqueoDto.tipoVehiculo = "";
+    this.registroParqueoDto.cilindraje = "";
+    this.textError = "";
+    this.textRetirar = "";
   };
 }
